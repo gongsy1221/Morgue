@@ -8,7 +8,8 @@ public enum PlayerStateEnum
     Run,
     Jump,
     Fall,
-    Die
+    Die,
+    Sit
 }
 
 public class Player : Agent
@@ -16,6 +17,7 @@ public class Player : Agent
     [Header("Setting value")]
     public float WalkSpeed = 2f;
     public float RunSpeed = 4f;
+    public float SitSpeed = 2f;
     public float JumpPower = 5f;
 
     public float JumpMaxTime = 1;

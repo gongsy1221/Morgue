@@ -57,6 +57,11 @@ public class PlayerMoveState : PlayerGroundState
                 _stateMachine.ChangeState(PlayerStateEnum.Walk);
             }
 
+            if(Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                _stateMachine.ChangeState(PlayerStateEnum.Sit);
+            }
+
             moveDir = movement;
         }
     }

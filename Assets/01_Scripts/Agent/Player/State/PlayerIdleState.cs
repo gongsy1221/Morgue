@@ -16,12 +16,9 @@ public class PlayerIdleState : PlayerGroundState
         //_player.MovementCompo.StopImmediately();
     }
 
-    
-
     public override void Exit()
     {
-        _player.PlayerInput.MovementEvent -=
-            HandleMovementEvent;
+        _player.PlayerInput.MovementEvent -= HandleMovementEvent;
         base.Exit();
     }
 
@@ -40,7 +37,18 @@ public class PlayerIdleState : PlayerGroundState
                 _stateMachine.ChangeState(PlayerStateEnum.Run);
                 return;
             }
+
+            if(Input.GetKey(KeyCode.LeftControl))
+            {
+                _stateMachine.ChangeState(PlayerStateEnum.Sit);
+                return;
+            }
+
             _stateMachine.ChangeState(PlayerStateEnum.Walk);
+        }
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+            _stateMachine.ChangeState(PlayerStateEnum.Sit);
         }
     }
 }

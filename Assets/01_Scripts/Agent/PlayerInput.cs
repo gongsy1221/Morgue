@@ -1,6 +1,12 @@
 using System;
+using TMPro;
 using UnityEngine;
 using Cursor = UnityEngine.Cursor;
+
+interface IInteractable
+{
+    public void Interact();
+}
 
 public class PlayerInput : MonoBehaviour
 {
@@ -8,7 +14,9 @@ public class PlayerInput : MonoBehaviour
     public event Action JumpEvent;
     
     public Vector3 MousePosition { get;private set; }
-    public Vector3 KeyInput { get; private set; }
+
+    public LayerMask interactableLayer;
+    private float interactDistance = 4f;
 
     private bool _playerInputEnabled = true;
 
@@ -22,6 +30,7 @@ public class PlayerInput : MonoBehaviour
         if (_playerInputEnabled == false) return;
         CheckJumpInput();
         CheckMoveInput();
+        CheckInteractInput();
     }
 
     private void CheckJumpInput()
@@ -40,5 +49,22 @@ public class PlayerInput : MonoBehaviour
         Vector3 moveVector = new Vector3(horizontal, 0, vertical);
 
         MovementEvent?.Invoke(moveVector.normalized);
+    }
+
+    private void CheckInteractInput()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (interactable != null)
+                {
+                    interactable.Interact();
+                }
+            }
+        }
     }
 }

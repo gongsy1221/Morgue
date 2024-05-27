@@ -14,8 +14,8 @@ public class PlayerFallState : PlayerState
 
     public override void Exit()
     {
-        base.Exit();
         _player.PlayerInput.MovementEvent -= HandleMovement;
+        base.Exit();
     }
 
     public override void UpdateState()
@@ -37,6 +37,5 @@ public class PlayerFallState : PlayerState
         _player.MovementCompo.MovementInput = velocity;
         velocity.y = _player.MovementCompo.Verticalveocity;
         _player.MovementCompo.SetMovement(velocity, true);
-
     }
 }

@@ -37,7 +37,6 @@ public class AgentMovement : MonoBehaviour, IMovement
     private void Update()
     {
         ApplyRotation();
-
         Move();
         ApplyGraivity();
     }
