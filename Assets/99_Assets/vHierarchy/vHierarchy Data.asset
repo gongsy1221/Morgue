@@ -16,6 +16,7 @@ MonoBehaviour:
     keys:
     - 99c9720ab356a0642a771bea13969a05
     - 322660110c133cb4e97c04e61e403488
+    - 845128cf95f90184697fffb609346de8
     values:
     - goDatas_byGlobalId:
         keys: []
@@ -23,3 +24,12 @@ MonoBehaviour:
     - goDatas_byGlobalId:
         keys: []
         values: []
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-8597519557946044859-0
+        - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-1270886380-0
+        values:
+        - colorIndex: 7
+          iconNameOrGuid: 
+        - colorIndex: 2
+          iconNameOrGuid: 
