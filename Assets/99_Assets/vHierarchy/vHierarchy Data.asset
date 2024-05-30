@@ -27,9 +27,15 @@ MonoBehaviour:
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-8597519557946044859-0
-        - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-1270886380-0
+        - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-308505032-0
+        - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-687440859-0
+        - globalObjectIdString: GlobalObjectId_V1-2-845128cf95f90184697fffb609346de8-1638152096-0
         values:
-        - colorIndex: 7
-          iconNameOrGuid: 
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
         - colorIndex: 2
-          iconNameOrGuid: 
+          iconNameOrGuid: Favorite
+        - colorIndex: 4
+          iconNameOrGuid: Favorite
+        - colorIndex: 7
+          iconNameOrGuid: Favorite

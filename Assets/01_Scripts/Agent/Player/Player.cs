@@ -77,9 +77,31 @@ public class Player : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        if(other.CompareTag("Backward"))
         {
-            PlayerDie();
+            if (!RoomManager.Instance.isSpecial)
+                RoomManager.Instance.roomNumber = 1;
+            else
+                RoomManager.Instance.roomNumber++;
+
+            RoomManager.Instance.PlayerCheck(11.5f, 21.5f, 90f);
+            // 맵 생성 한번만 되게 하기
+        }
+
+        if(other.CompareTag("Forward"))
+        {
+            if (!RoomManager.Instance.isSpecial)
+                RoomManager.Instance.roomNumber++;
+            else
+                RoomManager.Instance.roomNumber = 1;
+
+            RoomManager.Instance.PlayerCheck(-12f, -20f, 0f);
+            // 맵 생성 한번만 되게 하기
+        }
+
+        if (other.CompareTag("Room"))
+        {
+            RoomManager.Instance.CheckInRoom();
         }
     }
 }
