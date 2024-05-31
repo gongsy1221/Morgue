@@ -7,6 +7,8 @@ public class RoomManager : MonoSingleton<RoomManager>
     [SerializeField]private GameObject[] specialRoomPrefab;
     [SerializeField]private GameObject normalRoomPrefab;
 
+    public Transform forwardMap;
+    public Transform backwardMap;
     public GameObject currentRoom;
     private GameObject beforeRoom;
 
@@ -14,49 +16,79 @@ public class RoomManager : MonoSingleton<RoomManager>
     private const int maxRooms = 8;
 
     public bool isSpecial = false;
+    public bool isRoom = false;
+    public bool isForward = true;
 
-    // ÇÃ·¹ÀÌ¾î°¡ º¹µµ¸¦ Áö³µ´ÂÁö Ã¼Å©
-    public void PlayerCheck(float x, float z, float angle = 0)
+    private void Start()
+    {
+        isRoom = false;
+        isSpecial = false;
+
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        forwardMap = GameObject.FindWithTag("FMap").transform;
+        backwardMap = GameObject.FindWithTag("BMap").transform;
+    }
+
+    // í”Œë ˆì´ì–´ê°€ ë³µë„ë¥¼ ì§€ë‚¬ëŠ”ì§€ ì²´í¬
+    public void PlayerCheck()
     {
         if (roomNumber <= maxRooms)
         {
-            RandomRoom(x, z, angle);
+            StartCoroutine(RandomRoom());
         }
         else
         {
-            // °ÔÀÓ Á¾·á
+            // ê²Œì„ ì¢…ë£Œ
             Debug.Log("End");
         }
     }
 
-    // ¸Ê ·£´ı »ı¼º
-    private void RandomRoom(float x, float z, float angle = 0)
+    private IEnumerator RandomRoom()
     {
+        isRoom = true;
+
         int rand = Random.Range(0, specialRoomPrefab.Length);
-        if(rand == 0)
-            isSpecial = false;
-        else
-            isSpecial = true;
+        isSpecial = rand != 0;
 
         beforeRoom = currentRoom;
-        currentRoom = Instantiate(isSpecial ? specialRoomPrefab[rand -1] : normalRoomPrefab, 
-            new Vector3(beforeRoom.transform.position.x + x, 0, beforeRoom.transform.position.z + z), 
-            Quaternion.Euler(0, beforeRoom.transform.rotation.y + angle, 0));
 
-        // »ı¼ºµÇ°í ´Ù½Ã ¸ø µ¹¾Æ°¡°Ô ¹® ´İ¾ÆÁÖ±â
+        yield return null;
+
+        if (isForward)
+        {
+            currentRoom = Instantiate(isSpecial ? specialRoomPrefab[rand - 1] : normalRoomPrefab,
+                                      forwardMap.position, forwardMap.rotation);
+        }
+        else
+        {
+            currentRoom = Instantiate(isSpecial ? specialRoomPrefab[rand - 1] : normalRoomPrefab,
+                                      backwardMap.position, backwardMap.rotation);
+        }
+
+        yield return null;
+
+        Debug.Log(isSpecial);
+        Debug.Log(roomNumber);
+
+        // ë§µì´ ìƒì„±ë˜ê³  ë‹¤ì‹œ ëª» ëŒì•„ê°€ê²Œ ë¬¸ ë‹«ì•„ì£¼ê¸°
     }
 
-    // ¹æ¿¡ ÇÃ·¹ÀÌ¾î°¡ µé¾î¿Ô´ÂÁö Ã¼Å©
+    // ë°©ì— í”Œë ˆì´ì–´ê°€ ë“¤ì–´ì™”ëŠ”ì§€ ì²´í¬
     public void CheckInRoom()
     {
-        // µé¾î¿Â ¹® ´İ¾ÆÁÖ±â
-        // Àü¿¡ ÀÖ´ø ¹æÀº ¾ø¾Ö±â
+        isRoom = false;
+        // ë‚˜ê°„ ë¬¸ ë‹«ì•„ì£¼ê¸°
+        //beforeRoom.transform.GetComponentsInChildren
+
         Debug.Log("room");
         Destroy(beforeRoom);
-        // Map ¾È¿¡ ÀÖ´Â Street È°¼ºÈ­ ÇÏ±â
         currentRoom.transform.Find("Street").gameObject.SetActive(true);
+        Invoke("Initialize", 0.5f);
 
-        // ¸ğµç ÀÛ¾÷ ¿Ï·áÇÏ¸é Room Collider ºñÈ°¼ºÈ­
         GameObject.FindWithTag("Room").SetActive(false);
     }
 }

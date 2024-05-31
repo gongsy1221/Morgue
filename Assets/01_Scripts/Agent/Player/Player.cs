@@ -84,7 +84,10 @@ public class Player : Agent
             else
                 RoomManager.Instance.roomNumber++;
 
-            RoomManager.Instance.PlayerCheck(11.5f, 21.5f, 90f);
+            RoomManager.Instance.isForward = false;
+
+            if (!RoomManager.Instance.isRoom)
+                RoomManager.Instance.PlayerCheck();
             // 맵 생성 한번만 되게 하기
         }
 
@@ -95,7 +98,10 @@ public class Player : Agent
             else
                 RoomManager.Instance.roomNumber = 1;
 
-            RoomManager.Instance.PlayerCheck(-12f, -20f, 0f);
+            RoomManager.Instance.isForward = true;
+
+            if (!RoomManager.Instance.isRoom)
+                RoomManager.Instance.PlayerCheck();
             // 맵 생성 한번만 되게 하기
         }
 

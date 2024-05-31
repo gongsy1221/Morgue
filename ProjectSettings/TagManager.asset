@@ -9,6 +9,9 @@ TagManager:
   - Forward
   - Backward
   - Room
+  - FMap
+  - BMap
+  - Map
   layers:
   - Default
   - TransparentFX
