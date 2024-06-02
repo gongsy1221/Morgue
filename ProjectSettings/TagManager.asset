@@ -12,6 +12,8 @@ TagManager:
   - FMap
   - BMap
   - Map
+  - Point
+  - Fdoor
   layers:
   - Default
   - TransparentFX

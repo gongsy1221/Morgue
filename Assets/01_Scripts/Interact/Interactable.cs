@@ -17,5 +17,4 @@ public abstract class Interactable : MonoBehaviour
 
     public abstract void Interact();
     public abstract void Solved();
-    public abstract void Close();
 }

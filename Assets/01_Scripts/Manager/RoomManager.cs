@@ -9,6 +9,7 @@ public class RoomManager : MonoSingleton<RoomManager>
 
     public Transform forwardMap;
     public Transform backwardMap;
+    public Transform[] keyPoint;
     public GameObject currentRoom;
     private GameObject beforeRoom;
 
@@ -31,6 +32,9 @@ public class RoomManager : MonoSingleton<RoomManager>
     {
         forwardMap = GameObject.FindWithTag("FMap").transform;
         backwardMap = GameObject.FindWithTag("BMap").transform;
+
+        keyPoint = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
+        KeySpawner.Instance.RandomSpawnKey();
     }
 
     // 플레이어가 복도를 지났는지 체크
@@ -82,11 +86,14 @@ public class RoomManager : MonoSingleton<RoomManager>
     {
         isRoom = false;
         // 나간 문 닫아주기
-        //beforeRoom.transform.GetComponentsInChildren
+        //if(isForward)
+        //    beforeRoom.transform.Find("FrontDoor").GetComponent<Door>().ChangeDoorState();
+        //else
+        //    beforeRoom.transform.Find("BackDoor").GetComponent<Door>().ChangeDoorState();
 
-        Debug.Log("room");
         Destroy(beforeRoom);
         currentRoom.transform.Find("Street").gameObject.SetActive(true);
+        //currentRoom.transform.Find("FrontDoor").GetComponent<Door>().ChangeDoorState();
         Invoke("Initialize", 0.5f);
 
         GameObject.FindWithTag("Room").SetActive(false);
