@@ -102,7 +102,6 @@ public class Player : Agent
 
             if (!RoomManager.Instance.isRoom)
                 RoomManager.Instance.PlayerCheck();
-            // 맵 생성 한번만 되게 하기
         }
 
         if (other.CompareTag("Room"))

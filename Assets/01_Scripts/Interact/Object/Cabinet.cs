@@ -19,13 +19,13 @@ public class Cabinet : Interactable
     {
         if (open)
         {
-            Vector3 targetPos = new Vector3(cabinetOpenPos, transform.position.y, 0.12f);
-            transform.position = Vector3.Lerp(transform.position, targetPos, smoot * Time.deltaTime);
+            Vector3 targetPos = new Vector3(cabinetOpenPos, transform.localPosition.y, transform.localPosition.z);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, smoot * Time.deltaTime);
         }
         else
         {
-            Vector3 targetPos = new Vector3(cabinetClosePos, transform.position.y, 0.12f);
-            transform.position = Vector3.Lerp(transform.position, targetPos, smoot * Time.deltaTime);
+            Vector3 targetPos = new Vector3(cabinetClosePos, transform.localPosition.y, transform.localPosition.z);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, smoot * Time.deltaTime);
         }
     }
 

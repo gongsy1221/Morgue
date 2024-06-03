@@ -11,7 +11,7 @@ public class KeySpawner : MonoSingleton<KeySpawner>
     {
         if (spawnPoints.Length == 0) return;
 
-        int randomIndex = Random.Range(0, spawnPoints.Length);
+        int randomIndex = Random.Range(1, spawnPoints.Length-1);
         Transform spawnPoint = spawnPoints[randomIndex];
 
         Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);

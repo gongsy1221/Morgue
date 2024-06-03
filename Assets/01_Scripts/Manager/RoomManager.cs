@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoSingleton<RoomManager>
 {
@@ -9,7 +10,6 @@ public class RoomManager : MonoSingleton<RoomManager>
 
     public Transform forwardMap;
     public Transform backwardMap;
-    public Transform[] keyPoint;
     public GameObject currentRoom;
     private GameObject beforeRoom;
 
@@ -33,7 +33,7 @@ public class RoomManager : MonoSingleton<RoomManager>
         forwardMap = GameObject.FindWithTag("FMap").transform;
         backwardMap = GameObject.FindWithTag("BMap").transform;
 
-        keyPoint = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
+        KeySpawner.Instance.spawnPoints = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
         KeySpawner.Instance.RandomSpawnKey();
     }
 
@@ -47,7 +47,6 @@ public class RoomManager : MonoSingleton<RoomManager>
         else
         {
             // 게임 종료
-            Debug.Log("End");
         }
     }
 
@@ -75,27 +74,32 @@ public class RoomManager : MonoSingleton<RoomManager>
 
         yield return null;
 
-        Debug.Log(isSpecial);
-        Debug.Log(roomNumber);
-
         // 맵이 생성되고 다시 못 돌아가게 문 닫아주기
+        if (isForward)
+            beforeRoom.transform.Find("FrontDoor").GetComponent<Door>().CloseDoor();
+        else
+            beforeRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
+        
+        yield return null;
     }
 
     // 방에 플레이어가 들어왔는지 체크
     public void CheckInRoom()
     {
         isRoom = false;
-        // 나간 문 닫아주기
-        //if(isForward)
-        //    beforeRoom.transform.Find("FrontDoor").GetComponent<Door>().ChangeDoorState();
-        //else
-        //    beforeRoom.transform.Find("BackDoor").GetComponent<Door>().ChangeDoorState();
 
         Destroy(beforeRoom);
         currentRoom.transform.Find("Street").gameObject.SetActive(true);
-        //currentRoom.transform.Find("FrontDoor").GetComponent<Door>().ChangeDoorState();
+        currentRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
+        TimerManager.Instance.StartTimer();
         Invoke("Initialize", 0.5f);
 
         GameObject.FindWithTag("Room").SetActive(false);
+    }
+
+    public void ReStartGame()
+    {
+        SceneManager.LoadScene(0);
+        StartCoroutine(FadeManager.Instance.FadeIn());
     }
 }
