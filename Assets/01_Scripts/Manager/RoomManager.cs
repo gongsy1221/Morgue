@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoSingleton<RoomManager>
 {
-    [SerializeField]private GameObject[] specialRoomPrefab;
-    [SerializeField]private GameObject normalRoomPrefab;
+    [SerializeField] private GameObject[] specialRoomPrefabArray;
+    private List<GameObject> specialRoomPrefabList;
+    [SerializeField] private GameObject normalRoomPrefab;
 
     public Transform forwardMap;
     public Transform backwardMap;
@@ -24,6 +25,8 @@ public class RoomManager : MonoSingleton<RoomManager>
     {
         isRoom = false;
         isSpecial = false;
+
+        specialRoomPrefabList = new List<GameObject>(specialRoomPrefabArray);
 
         Initialize();
     }
@@ -54,22 +57,31 @@ public class RoomManager : MonoSingleton<RoomManager>
     {
         isRoom = true;
 
-        int rand = Random.Range(0, specialRoomPrefab.Length);
+        if (specialRoomPrefabList.Count == 0 && !isSpecial)
+        {
+            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position, isForward ? 
+                forwardMap.rotation : backwardMap.rotation);
+            yield return null;
+        }
+
+        int rand = Random.Range(0, specialRoomPrefabList.Count + 1);
         isSpecial = rand != 0;
 
         beforeRoom = currentRoom;
 
         yield return null;
 
-        if (isForward)
+        if (isSpecial)
         {
-            currentRoom = Instantiate(isSpecial ? specialRoomPrefab[rand - 1] : normalRoomPrefab,
-                                      forwardMap.position, forwardMap.rotation);
+            int specialIndex = rand - 1;
+            currentRoom = Instantiate(specialRoomPrefabList[specialIndex], isForward ? forwardMap.position : backwardMap.position, 
+                isForward ? forwardMap.rotation : backwardMap.rotation);
+            specialRoomPrefabList.RemoveAt(specialIndex);
         }
         else
         {
-            currentRoom = Instantiate(isSpecial ? specialRoomPrefab[rand - 1] : normalRoomPrefab,
-                                      backwardMap.position, backwardMap.rotation);
+            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position, 
+                isForward ? forwardMap.rotation : backwardMap.rotation);
         }
 
         yield return null;
@@ -78,7 +90,7 @@ public class RoomManager : MonoSingleton<RoomManager>
             beforeRoom.transform.Find("FrontDoor").GetComponent<Door>().CloseDoor();
         else
             beforeRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
-        
+
         yield return null;
     }
 

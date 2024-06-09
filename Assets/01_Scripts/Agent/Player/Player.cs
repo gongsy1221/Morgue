@@ -28,6 +28,7 @@ public class Player : Agent
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField]
     private PlayerInput _playerInput;
+    private CameraControl _cameraControl;
     public PlayerInput PlayerInput => _playerInput;
 
     protected override void Awake()
@@ -55,6 +56,8 @@ public class Player : Agent
                 Debug.LogError(e.Message);
             }
         }
+
+        _cameraControl = GetComponentInChildren<CameraControl>();
     }
 
     protected void Start()
@@ -74,6 +77,7 @@ public class Player : Agent
     public void PlayerDie()
     {
         isDead = true;
+        _cameraControl.EnableRotation(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,15 +87,9 @@ public class Player : Agent
             if (other.CompareTag("Backward"))
             {
                 if (!RoomManager.Instance.isSpecial)
-                {
                     RoomManager.Instance.roomNumber = 1;
-                    Debug.Log("B X");
-                }
                 else
-                {
                     RoomManager.Instance.roomNumber++;
-                    Debug.Log("B O");
-                }
 
                 isCheck = false;
                 RoomManager.Instance.isForward = false;
@@ -103,15 +101,9 @@ public class Player : Agent
             if (other.CompareTag("Forward"))
             {
                 if (!RoomManager.Instance.isSpecial)
-                {
                     RoomManager.Instance.roomNumber++;
-                    Debug.Log("F O");
-                }
                 else
-                {
                     RoomManager.Instance.roomNumber = 1;
-                    Debug.Log("F X");
-                }
 
                 isCheck = false;
                 RoomManager.Instance.isForward = true;
@@ -125,6 +117,11 @@ public class Player : Agent
         {
             isCheck = true;
             RoomManager.Instance.CheckInRoom();
+        }
+
+        if(other.CompareTag("Enemy"))
+        {
+            PlayerDie();
         }
     }
 }
