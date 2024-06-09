@@ -18,7 +18,7 @@ public class Door : Interactable
         List<Item> items = Inventory.Instance.GetItems();
         if (items.Count > 0 && items[0] == key && !isKey)
         {
-            TimerManager.Instance.StopTimer();
+            //TimerManager.Instance.StopTimer();
             Inventory.Instance.Remove(key);
             isKey = true;
             pairDoor.isKey = true;

@@ -74,7 +74,6 @@ public class RoomManager : MonoSingleton<RoomManager>
 
         yield return null;
 
-        // 맵이 생성되고 다시 못 돌아가게 문 닫아주기
         if (isForward)
             beforeRoom.transform.Find("FrontDoor").GetComponent<Door>().CloseDoor();
         else
@@ -90,8 +89,15 @@ public class RoomManager : MonoSingleton<RoomManager>
 
         Destroy(beforeRoom);
         currentRoom.transform.Find("Street").gameObject.SetActive(true);
+
+        Transform mapEvent = currentRoom.transform.Find("MapEvent");
+        if (mapEvent != null)
+        {
+            mapEvent.gameObject.SetActive(true);
+        }
+
         currentRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
-        TimerManager.Instance.StartTimer();
+        //TimerManager.Instance.StartTimer();
         Invoke("Initialize", 0.5f);
 
         GameObject.FindWithTag("Room").SetActive(false);

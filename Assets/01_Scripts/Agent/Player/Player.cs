@@ -23,6 +23,7 @@ public class Player : Agent
     public float JumpMaxTime = 1;
     public float CurrentSpeed = 0;
     public bool isDead;
+    private bool isCheck = true;
 
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField]
@@ -77,35 +78,52 @@ public class Player : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Backward"))
+        if(isCheck)
         {
-            if (!RoomManager.Instance.isSpecial)
-                RoomManager.Instance.roomNumber = 1;
-            else
-                RoomManager.Instance.roomNumber++;
+            if (other.CompareTag("Backward"))
+            {
+                if (!RoomManager.Instance.isSpecial)
+                {
+                    RoomManager.Instance.roomNumber = 1;
+                    Debug.Log("B X");
+                }
+                else
+                {
+                    RoomManager.Instance.roomNumber++;
+                    Debug.Log("B O");
+                }
 
-            RoomManager.Instance.isForward = false;
+                isCheck = false;
+                RoomManager.Instance.isForward = false;
 
-            if (!RoomManager.Instance.isRoom)
-                RoomManager.Instance.PlayerCheck();
-            // 맵 생성 한번만 되게 하기
-        }
+                if (!RoomManager.Instance.isRoom)
+                    RoomManager.Instance.PlayerCheck();
+            }
 
-        if(other.CompareTag("Forward"))
-        {
-            if (!RoomManager.Instance.isSpecial)
-                RoomManager.Instance.roomNumber++;
-            else
-                RoomManager.Instance.roomNumber = 1;
+            if (other.CompareTag("Forward"))
+            {
+                if (!RoomManager.Instance.isSpecial)
+                {
+                    RoomManager.Instance.roomNumber++;
+                    Debug.Log("F O");
+                }
+                else
+                {
+                    RoomManager.Instance.roomNumber = 1;
+                    Debug.Log("F X");
+                }
 
-            RoomManager.Instance.isForward = true;
+                isCheck = false;
+                RoomManager.Instance.isForward = true;
 
-            if (!RoomManager.Instance.isRoom)
-                RoomManager.Instance.PlayerCheck();
+                if (!RoomManager.Instance.isRoom)
+                    RoomManager.Instance.PlayerCheck();
+            }
         }
 
         if (other.CompareTag("Room"))
         {
+            isCheck = true;
             RoomManager.Instance.CheckInRoom();
         }
     }
