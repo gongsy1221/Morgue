@@ -3555,6 +3555,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 8683392626775440347}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 1
   doorOpenAngle: 100
@@ -3672,6 +3673,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 9137192069950739089}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 1
   doorOpenAngle: 10
@@ -5559,6 +5561,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 1716163635276516512}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 0
   doorOpenAngle: -280
@@ -9870,6 +9873,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 6908887433941172413}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 1
   doorOpenAngle: -10

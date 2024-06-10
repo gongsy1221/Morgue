@@ -6,6 +6,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class RisingWater : MonoBehaviour
 {
     [SerializeField] private GameObject water;
+    [SerializeField] private Door door1;
+    [SerializeField] private Door door2;
 
     private Player _player;
 
@@ -19,6 +21,8 @@ public class RisingWater : MonoBehaviour
 
     private void Update()
     {
+        if (door1.isKey || door2.isKey) return;
+
         if (currentY <= maxY)
         {
             currentY += 0.001f;

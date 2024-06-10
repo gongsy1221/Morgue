@@ -14,6 +14,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Enter();
         _player.PlayerInput.MovementEvent += HandleMoveEvent;
+        SoundManager.PlayFx(_player.soundPlayer.audioClips[0], 1, true);
         _player.isMove = true;
     }
 
@@ -22,6 +23,7 @@ public class PlayerMoveState : PlayerGroundState
         base.Exit();
         _player.MovementCompo.StopImmediately();
         _player.PlayerInput.MovementEvent -= HandleMoveEvent;
+        SoundManager.StopFx(_player.soundPlayer.audioClips[0]);
     }
 
     public override void UpdateState()

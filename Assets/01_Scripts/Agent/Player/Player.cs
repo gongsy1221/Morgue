@@ -27,6 +27,7 @@ public class Player : Agent
     private bool isCheck = true;
 
     public PlayerStateMachine StateMachine { get; private set; }
+    public SoundPlayer soundPlayer { get; private set; }
     [SerializeField]
     private PlayerInput _playerInput;
     private CameraControl _cameraControl;
@@ -40,6 +41,7 @@ public class Player : Agent
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         StateMachine = new PlayerStateMachine();
+        soundPlayer = GetComponent<SoundPlayer>();
 
         foreach (PlayerStateEnum stateEnum in Enum.GetValues(typeof(PlayerStateEnum)))
         {

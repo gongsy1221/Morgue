@@ -11,7 +11,6 @@ public class PlayerJumpState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        _player.AudioCompo.Play();
         _player.MovementCompo.StopImmediately();
         _player.MovementCompo.Jump();
     }

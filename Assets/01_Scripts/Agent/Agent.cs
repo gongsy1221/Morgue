@@ -11,7 +11,6 @@ public class Agent : MonoBehaviour
     public Animator AnimatorCompo { get; protected set; }
     public IMovement MovementCompo { get ; protected set; }
     public Collider ColliderComp { get; protected set; }
-    public AudioSource AudioCompo { get; protected set; }
     #endregion
 
     public bool CanStateChangeable { get; protected set; } = true;
@@ -25,7 +24,6 @@ public class Agent : MonoBehaviour
         AnimatorCompo = visualTrm.GetComponent<Animator>();
         MovementCompo = GetComponent<IMovement>();
         ColliderComp = GetComponent<Collider>();
-        AudioCompo = GetComponent<AudioSource>();   
         MovementCompo.Initalize(this);
     }
 

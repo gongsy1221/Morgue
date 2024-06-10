@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   water: {fileID: 3004912572651191311}
+  door1: {fileID: 9013149488540337857}
+  door2: {fileID: 3610113904218627741}
 --- !u!1 &700703700386258811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3598,6 +3600,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 9013149488540337857}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 1
   doorOpenAngle: -10
@@ -5962,6 +5965,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 3610113904218627741}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 0
   doorOpenAngle: -280
@@ -8793,6 +8797,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 5128913204254121571}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 0
   doorOpenAngle: 100
@@ -10047,6 +10052,7 @@ MonoBehaviour:
   promptMessage: "\uC7A0\uAE34 \uBB38"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 5411651390070643530}
+  audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
   isKey: 0
   isOpen: 1
   doorOpenAngle: 10
