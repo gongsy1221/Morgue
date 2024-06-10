@@ -1,11 +1,14 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerLookCheck : MonoBehaviour
 {
+    [SerializeField] GameObject ghostObj;
+
     public GameObject ghostGirl;
 
     private Camera playerCamera;
-    private Player player;
+    private Player _player;
     
     private float gazeTime = 2.0f;
     private float timer = 0.0f;
@@ -14,7 +17,8 @@ public class PlayerLookCheck : MonoBehaviour
     private void Awake()
     {
         playerCamera = Camera.main;
-        player = FindObjectOfType<Player>();
+        _player = FindObjectOfType<Player>();
+        ghostObj = _player.transform.Find("PlayerDie").gameObject;
 
         if (ghostGirl != null)
             ghostGirlY = ghostGirl.transform.position.y;
@@ -33,9 +37,11 @@ public class PlayerLookCheck : MonoBehaviour
                 Debug.Log(timer);
                 if (timer >= gazeTime)
                 {
-                    player.PlayerDie();
+                    _player.PlayerDie();
                     MoveGhostGirlInFrontOfPlayer();
-                    Invoke("RestartGame", 1f);
+                    ghostObj.SetActive(true);
+
+                    Invoke("RestartGame", 0.8f);
                 }
             }
             else
@@ -54,12 +60,10 @@ public class PlayerLookCheck : MonoBehaviour
         Vector3 cameraForward = playerCamera.transform.forward;
         Vector3 cameraPosition = playerCamera.transform.position;
 
-        // ghostGirl을 플레이어 카메라 앞 1미터 지점으로 이동
-        Vector3 newPosition = cameraPosition + cameraForward * 0.5f;
+        Vector3 newPosition = cameraPosition + cameraForward * 0.8f;
         newPosition.y = ghostGirlY - 0.1f;
         ghostGirl.transform.position = newPosition;
 
-        // ghostGirl이 플레이어를 정확히 바라보도록 회전
         ghostGirl.transform.LookAt(new Vector3(cameraPosition.x, ghostGirlY, cameraPosition.z));
     }
 

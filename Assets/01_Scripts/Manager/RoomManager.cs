@@ -117,7 +117,7 @@ public class RoomManager : MonoSingleton<RoomManager>
 
     public void ReStartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainScene");
         StartCoroutine(FadeManager.Instance.FadeIn());
     }
 }

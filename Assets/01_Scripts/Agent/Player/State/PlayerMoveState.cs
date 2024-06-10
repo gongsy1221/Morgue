@@ -14,6 +14,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Enter();
         _player.PlayerInput.MovementEvent += HandleMoveEvent;
+        _player.isMove = true;
     }
 
     public override void Exit()

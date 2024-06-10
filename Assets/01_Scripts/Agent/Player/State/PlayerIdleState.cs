@@ -14,6 +14,7 @@ public class PlayerIdleState : PlayerGroundState
         base.Enter();
         _player.PlayerInput.MovementEvent += HandleMovementEvent;
         //_player.MovementCompo.StopImmediately();
+        _player.isMove = false;
     }
 
     public override void Exit()

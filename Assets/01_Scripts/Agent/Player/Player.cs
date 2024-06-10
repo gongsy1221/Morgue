@@ -23,12 +23,14 @@ public class Player : Agent
     public float JumpMaxTime = 1;
     public float CurrentSpeed = 0;
     public bool isDead;
+    public bool isMove;
     private bool isCheck = true;
 
     public PlayerStateMachine StateMachine { get; private set; }
     [SerializeField]
     private PlayerInput _playerInput;
     private CameraControl _cameraControl;
+    private PlayerUI _playerUI;
     public PlayerInput PlayerInput => _playerInput;
 
     protected override void Awake()
@@ -58,6 +60,7 @@ public class Player : Agent
         }
 
         _cameraControl = GetComponentInChildren<CameraControl>();
+        _playerUI = GetComponent<PlayerUI>();
     }
 
     protected void Start()
@@ -111,6 +114,8 @@ public class Player : Agent
                 if (!RoomManager.Instance.isRoom)
                     RoomManager.Instance.PlayerCheck();
             }
+
+            _playerUI.UpdateRoomText();
         }
 
         if (other.CompareTag("Room"))
