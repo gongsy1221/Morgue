@@ -859,6 +859,7 @@ MonoBehaviour:
   - {fileID: 8161241709134607554, guid: 0f7acdf3033ebac42b8404dec9de74fc, type: 3}
   - {fileID: 886799453949380020, guid: 61b5a4446986d0649824b80ac8860266, type: 3}
   - {fileID: 6242536059913102669, guid: a89c5db459acf0e46b850c43db6cb76a, type: 3}
+  - {fileID: 5841972841434531426, guid: c2c32dbbcb0deb54ba564555d1790705, type: 3}
   normalRoomPrefab: {fileID: 9034562879043944888, guid: 7b3b21fa49cfbe74899eee6ce457f04a,
     type: 3}
   forwardMap: {fileID: 1604113613633047922}
@@ -2446,7 +2447,6 @@ Transform:
   - {fileID: 491591517}
   - {fileID: 1894462707}
   - {fileID: 98196118}
-  - {fileID: 1954205276}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1642601058 stripped
@@ -2814,51 +2814,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 252926479778376024}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1954205275
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1954205276}
-  - component: {fileID: 1954205277}
-  m_Layer: 0
-  m_Name: CraftingManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1954205276
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954205275}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1638152097}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954205277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954205275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58dd903cea945434896c09b390301600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combinations: []
 --- !u!4 &1962956264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497050, guid: 8555b5e3674ee2a49b8206c8ce692744,
@@ -5894,8 +5849,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6535906, guid: 39aa3d34987062c438ae976f64466405, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -7268,7 +7222,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 40db425bdf9201044a4acff04b6431d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 350f468bbb38e2a42b9a4bdc2268c3bb, type: 3}
   m_Color: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8514,8 +8468,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6535906, guid: 39aa3d34987062c438ae976f64466405, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -14581,7 +14534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 19526fa0dbfcf5b479d18e25fcbe1320, type: 3}
+  - {fileID: 8300000, guid: b8c334f9e8b485c45b5cc8f16014657d, type: 3}
 --- !u!1001 &8905169867882702676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14908,13 +14861,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2861991421440565000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3.979, y: 2.149, z: 2.901}
   m_LocalScale: {x: 0.17272438, y: 0.15199763, z: 0.41475007}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5652755574744812624}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &9148538914696401779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 128952, guid: e8844f0074e08e146ac42fb5eaeab3db,

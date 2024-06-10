@@ -885,6 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightObj: {fileID: 1227903714483718095}
   ghostObj: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: b8c334f9e8b485c45b5cc8f16014657d, type: 3}
 --- !u!1 &5174492913416311177
 GameObject:
   m_ObjectHideFlags: 0

@@ -1262,7 +1262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 282527210498747463}
   m_Layer: 0
-  m_Name: KnockDoor_Mapp
+  m_Name: KnockDoor_Map
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -5,7 +6,7 @@ public class PlayerLookCheck : MonoBehaviour
 {
     [SerializeField] GameObject ghostObj;
 
-    public GameObject ghostGirl;
+    public Transform ghostGirl;
 
     private Camera playerCamera;
     private Player _player;
@@ -13,6 +14,8 @@ public class PlayerLookCheck : MonoBehaviour
     private float gazeTime = 2.0f;
     private float timer = 0.0f;
     private float ghostGirlY;
+    public float moveDuration = 0.5f;
+    public int moveSteps = 3;
 
     private void Awake()
     {
@@ -38,8 +41,7 @@ public class PlayerLookCheck : MonoBehaviour
                 if (timer >= gazeTime)
                 {
                     _player.PlayerDie();
-                    MoveGhostGirlInFrontOfPlayer();
-                    ghostObj.SetActive(true);
+                    StartCoroutine(MoveGhostGirlCoroutine());
 
                     Invoke("RestartGame", 0.8f);
                 }
@@ -55,16 +57,26 @@ public class PlayerLookCheck : MonoBehaviour
         }
     }
 
-    private void MoveGhostGirlInFrontOfPlayer()
+    private IEnumerator MoveGhostGirlCoroutine()
     {
         Vector3 cameraForward = playerCamera.transform.forward;
         Vector3 cameraPosition = playerCamera.transform.position;
 
-        Vector3 newPosition = cameraPosition + cameraForward * 0.8f;
-        newPosition.y = ghostGirlY - 0.1f;
-        ghostGirl.transform.position = newPosition;
+        Vector3 startPosition = ghostGirl.position;
+        Vector3 endPosition = cameraPosition + cameraForward;
+        endPosition.y = ghostGirlY - 0.1f;
 
-        ghostGirl.transform.LookAt(new Vector3(cameraPosition.x, ghostGirlY, cameraPosition.z));
+        for (int i = 1; i <= moveSteps; i++)
+        {
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, (float)i / moveSteps);
+            ghostGirl.position = newPosition;
+            ghostGirl.LookAt(new Vector3(cameraPosition.x, ghostGirlY, cameraPosition.z));
+
+            yield return new WaitForSeconds(moveDuration);
+        }
+
+        ghostGirl.gameObject.SetActive(false);
+        ghostObj.SetActive(true);
     }
 
     private void RestartGame()

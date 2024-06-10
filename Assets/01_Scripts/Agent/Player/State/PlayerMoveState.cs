@@ -14,7 +14,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         base.Enter();
         _player.PlayerInput.MovementEvent += HandleMoveEvent;
-        SoundManager.PlayFx(_player.soundPlayer.audioClips[0], 1, true);
+        SoundManager.PlayFx(_player.soundPlayer.audioClips[0], 0.2f, true);
         _player.isMove = true;
     }
 
