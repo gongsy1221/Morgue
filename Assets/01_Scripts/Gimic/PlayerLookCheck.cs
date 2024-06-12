@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerLookCheck : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class PlayerLookCheck : MonoBehaviour
     private Camera playerCamera;
     private Player _player;
     
-    private float gazeTime = 2.0f;
+    private float gazeTime = 1.0f;
     private float timer = 0.0f;
     private float ghostGirlY;
     public float moveDuration = 0.5f;
@@ -42,8 +41,6 @@ public class PlayerLookCheck : MonoBehaviour
                 {
                     _player.PlayerDie();
                     StartCoroutine(MoveGhostGirlCoroutine());
-
-                    Invoke("RestartGame", 0.8f);
                 }
             }
             else
@@ -68,7 +65,7 @@ public class PlayerLookCheck : MonoBehaviour
 
         for (int i = 1; i <= moveSteps; i++)
         {
-            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, (float)i / moveSteps);
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, (float)i / moveSteps + 1);
             ghostGirl.position = newPosition;
             ghostGirl.LookAt(new Vector3(cameraPosition.x, ghostGirlY, cameraPosition.z));
 
@@ -77,10 +74,8 @@ public class PlayerLookCheck : MonoBehaviour
 
         ghostGirl.gameObject.SetActive(false);
         ghostObj.SetActive(true);
-    }
 
-    private void RestartGame()
-    {
+        yield return new WaitForSeconds(0.8f);
         RoomManager.Instance.ReStartGame();
     }
 }
