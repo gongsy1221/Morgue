@@ -14,7 +14,7 @@ TagManager:
   - Map
   - Point
   - Fdoor
-  - Enemy
+  - Last
   layers:
   - Default
   - TransparentFX

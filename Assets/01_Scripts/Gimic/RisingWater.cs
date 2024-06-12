@@ -12,7 +12,7 @@ public class RisingWater : MonoBehaviour
     private Player _player;
 
     private float currentY = -0.75f;
-    private float maxY = 0.8f;
+    private float maxY = 0.9f;
 
     private void Awake()
     {
@@ -21,18 +21,19 @@ public class RisingWater : MonoBehaviour
 
     private void Update()
     {
-        if (door1.isKey || door2.isKey) return;
-
-        if (currentY <= maxY)
+        if (!door1.isKey && !door2.isKey)
         {
-            currentY += 0.001f;
-            water.transform.position =
-                    new Vector3(water.transform.position.x, currentY, water.transform.position.z);
-        }
-        else
-        {
-            _player.PlayerDie();
-            RestartGame();
+            if (currentY <= maxY)
+            {
+                currentY += 0.001f;
+                water.transform.position =
+                        new Vector3(water.transform.position.x, currentY, water.transform.position.z);
+            }
+            else
+            {
+                _player.PlayerDie();
+                RestartGame();
+            }
         }
     }
 

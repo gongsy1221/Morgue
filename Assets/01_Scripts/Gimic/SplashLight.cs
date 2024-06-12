@@ -21,11 +21,11 @@ public class SplashLight : MonoBehaviour
         {
             if (targetIntensity - currentIntensity >= 0)
             {   
-                currentIntensity += Time.deltaTime * 3f;
+                currentIntensity += Time.deltaTime;
             }
             else
             {   
-                currentIntensity -= Time.deltaTime * 3f;
+                currentIntensity -= Time.deltaTime;
             }
             theLight.intensity = currentIntensity;
             theLight.range = currentIntensity + 10;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FadeManager : MonoSingleton<FadeManager>
 {
-    public float fadeSpeed = 1.5f;
+    public float fadeSpeed = 0.8f;
     public bool fadeInOnStart = true;
     public bool fadeOutOnExit = true;
 
@@ -18,6 +18,11 @@ public class FadeManager : MonoSingleton<FadeManager>
             canvasGroup.alpha = 1f;
             StartCoroutine(FadeOut());
         }
+    }
+
+    public void Alpah1()
+    {
+        canvasGroup.alpha = 1f;
     }
 
     public IEnumerator FadeIn()

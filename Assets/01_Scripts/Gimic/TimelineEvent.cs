@@ -14,6 +14,7 @@ public class TimelineEvent : MonoBehaviour
         for (int i = 0; i < lights.Length; i++) 
             lights[i].GetComponent<SplashLight>().enabled = false;
         isPlay = false;
+        StartCoroutine(FadeManager.Instance.FadeIn());
     }
 
     private void Update()
@@ -33,6 +34,13 @@ public class TimelineEvent : MonoBehaviour
 
     public void LoadScene()
     {
+        FadeManager.Instance.Alpah1();
+        StartCoroutine(LoadSceneRoutine());
+    }
+
+    private IEnumerator LoadSceneRoutine()
+    {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("01_MainScene");
     }
 }

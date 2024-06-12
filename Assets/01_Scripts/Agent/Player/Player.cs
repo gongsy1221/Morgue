@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerStateEnum
 {
@@ -126,9 +127,12 @@ public class Player : Agent
             RoomManager.Instance.CheckInRoom();
         }
 
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Last"))
         {
-            PlayerDie();
+            //SceneManager.LoadScene("03_LastScene");
+            StartCoroutine(FadeManager.Instance.FadeIn());
+            SceneManager.LoadScene(0);
+            Debug.Log("Game End");
         }
     }
 }

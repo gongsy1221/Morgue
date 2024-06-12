@@ -8,6 +8,7 @@ public class RoomManager : MonoSingleton<RoomManager>
     [SerializeField] private GameObject[] specialRoomPrefabArray;
     private List<GameObject> specialRoomPrefabList;
     [SerializeField] private GameObject normalRoomPrefab;
+    [SerializeField] private GameObject lastRoom;
 
     public Transform forwardMap;
     public Transform backwardMap;
@@ -49,8 +50,14 @@ public class RoomManager : MonoSingleton<RoomManager>
         }
         else
         {
-            // 게임 종료
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        Instantiate(lastRoom, isForward ? forwardMap.position : backwardMap.position, isForward ?
+                forwardMap.rotation : backwardMap.rotation);
     }
 
     private IEnumerator RandomRoom()

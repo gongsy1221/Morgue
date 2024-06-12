@@ -274,7 +274,7 @@ namespace SlimUI.ModernMenu{
 
 				if (operation.progress >= 0.9f && waitForInput){
 					loadingBar.value = 1;
-					loadPromptText.text = "Press the Enter Button";
+					loadPromptText.text = "Enter를 누르세요.";
 
 					if (Input.GetKeyDown(userPromptKey)){
 						operation.allowSceneActivation = true;
