@@ -10,7 +10,7 @@ public class FadeManager : MonoSingleton<FadeManager>
 
     private CanvasGroup canvasGroup;
 
-    void Start()
+    private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         if (fadeInOnStart)
