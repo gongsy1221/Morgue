@@ -21,15 +21,15 @@ public class RisingWater : MonoBehaviour
 
     private void Update()
     {
-        if (!door1.isKey && !door2.isKey)
+        if (currentY <= maxY)
         {
-            if (currentY <= maxY)
-            {
-                currentY += 0.001f;
-                water.transform.position =
-                        new Vector3(water.transform.position.x, currentY, water.transform.position.z);
-            }
-            else
+            currentY += 0.0005f;
+            water.transform.position =
+                    new Vector3(water.transform.position.x, currentY, water.transform.position.z);
+        }
+        else
+        {
+            if (!door1.isKey && !door2.isKey)
             {
                 _player.PlayerDie();
                 RestartGame();

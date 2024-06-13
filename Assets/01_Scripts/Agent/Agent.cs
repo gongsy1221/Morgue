@@ -25,6 +25,9 @@ public class Agent : MonoBehaviour
         MovementCompo = GetComponent<IMovement>();
         ColliderComp = GetComponent<Collider>();
         MovementCompo.Initalize(this);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     #region Delay Callback

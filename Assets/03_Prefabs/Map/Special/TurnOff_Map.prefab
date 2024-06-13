@@ -886,6 +886,8 @@ MonoBehaviour:
   lightObj: {fileID: 1227903714483718095}
   ghostObj: {fileID: 0}
   audioClip: {fileID: 8300000, guid: b8c334f9e8b485c45b5cc8f16014657d, type: 3}
+  door1: {fileID: 8547865030275650311}
+  door2: {fileID: 7169516591883906498}
 --- !u!1 &5174492913416311177
 GameObject:
   m_ObjectHideFlags: 0

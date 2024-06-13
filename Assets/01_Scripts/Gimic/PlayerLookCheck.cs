@@ -13,7 +13,7 @@ public class PlayerLookCheck : MonoBehaviour
     private float gazeTime = 1.0f;
     private float timer = 0.0f;
     private float ghostGirlY;
-    public float moveDuration = 0.5f;
+    public float moveDuration = 1f;
     public int moveSteps = 3;
 
     private void Awake()
@@ -36,10 +36,10 @@ public class PlayerLookCheck : MonoBehaviour
             if (hit.collider.CompareTag("Enemy"))
             {
                 timer += Time.deltaTime;
-                Debug.Log(timer);
                 if (timer >= gazeTime)
                 {
                     _player.PlayerDie();
+                    timer = 0.0f;
                     StartCoroutine(MoveGhostGirlCoroutine());
                 }
             }
@@ -65,7 +65,7 @@ public class PlayerLookCheck : MonoBehaviour
 
         for (int i = 1; i <= moveSteps; i++)
         {
-            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, (float)i / moveSteps + 1);
+            Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, (float)i / moveSteps);
             ghostGirl.position = newPosition;
             ghostGirl.LookAt(new Vector3(cameraPosition.x, ghostGirlY, cameraPosition.z));
 

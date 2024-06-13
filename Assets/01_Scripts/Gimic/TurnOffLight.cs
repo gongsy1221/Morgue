@@ -7,6 +7,8 @@ public class TurnOffLight : MonoBehaviour
     [SerializeField] private GameObject lightObj;
     [SerializeField] private GameObject ghostObj;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private Door door1;
+    [SerializeField] private Door door2;
 
     private Player _player;
 
@@ -28,20 +30,24 @@ public class TurnOffLight : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if(currentTime > randTime)
+        if (currentTime > randTime)
         {
             SoundManager.StopFx(audioClip);
             StartCoroutine(ChangeLightObj());
             currentTime = 0f;
         }
 
-        if(!checkState && _player.isMove)
+        if (!door1.isKey && !door2.isKey)
         {
-            _player.PlayerDie();
-            ghostObj.SetActive(true);
+            if (!checkState && _player.isMove)
+            {
+                _player.PlayerDie();
+                ghostObj.SetActive(true);
 
-            Invoke("RestartGame", 1f);
+                Invoke("RestartGame", 1f);
+            }
         }
+            
     }
 
     private IEnumerator ChangeLightObj()

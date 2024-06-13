@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostObj: {fileID: 0}
-  ghostGirl: {fileID: 8661307968969673343}
+  ghostGirl: {fileID: 8320669802880487621}
   moveDuration: 0.5
   moveSteps: 3
 --- !u!1 &6126232850115394912
