@@ -19,6 +19,7 @@ public class TurnOffLight : MonoBehaviour
 
     private bool currentState = true;
     private bool checkState = true;
+    private bool isClear = false;
 
     private void Awake()
     {
@@ -28,6 +29,9 @@ public class TurnOffLight : MonoBehaviour
 
     private void Update()
     {
+        if (door1.isKey || door2.isKey)
+            isClear = true;
+
         currentTime += Time.deltaTime;
 
         if (currentTime > randTime)
@@ -37,7 +41,7 @@ public class TurnOffLight : MonoBehaviour
             currentTime = 0f;
         }
 
-        if (!door1.isKey && !door2.isKey)
+        if(!isClear)
         {
             if (!checkState && _player.isMove)
             {

@@ -14,6 +14,8 @@ public class RisingWater : MonoBehaviour
     private float currentY = -0.75f;
     private float maxY = 0.9f;
 
+    private bool isClear = false;
+
     private void Awake()
     {
         _player = FindObjectOfType<Player>();
@@ -21,6 +23,9 @@ public class RisingWater : MonoBehaviour
 
     private void Update()
     {
+        if (door1.isKey || door2.isKey)
+            isClear = true;
+
         if (currentY <= maxY)
         {
             currentY += 0.0005f;
@@ -29,7 +34,7 @@ public class RisingWater : MonoBehaviour
         }
         else
         {
-            if (!door1.isKey && !door2.isKey)
+            if(!isClear)
             {
                 _player.PlayerDie();
                 RestartGame();
