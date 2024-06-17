@@ -80,9 +80,4 @@ public class AgentMovement : MonoBehaviour, IMovement
     {
         _velocity = Vector3.zero;
     }
-
-    public void SetDetination(Vector3 destination)
-    {
-        Debug.Log("Set destination method is not used in agent movement");
-    }
 }

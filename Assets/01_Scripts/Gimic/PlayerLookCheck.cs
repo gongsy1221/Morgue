@@ -75,7 +75,7 @@ public class PlayerLookCheck : MonoBehaviour
         ghostGirl.gameObject.SetActive(false);
         ghostObj.SetActive(true);
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(2.5f);
         RoomManager.Instance.ReStartGame();
     }
 }

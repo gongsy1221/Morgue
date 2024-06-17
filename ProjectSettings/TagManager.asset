@@ -15,6 +15,7 @@ TagManager:
   - Point
   - Fdoor
   - Last
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Water
   - UI
   - Interact
-  - 
+  - PP
   - 
   - 
   - 

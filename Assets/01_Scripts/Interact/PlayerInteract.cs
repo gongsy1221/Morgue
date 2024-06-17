@@ -12,11 +12,17 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] private float _distance = 3;
 
+    private Material outline;
+
+    private MeshRenderer renderers;
+    private List<Material> materialList = new List<Material>();
+
     private void Awake()
     {
         _cam = Camera.main.transform;
         _interactMask = LayerMask.NameToLayer("Interact");
         _playerUI = GetComponent<PlayerUI>();
+        //outline = new Material(Shader.Find("Draw/OutlineShader"));
     }
 
     void Update()
@@ -28,10 +34,28 @@ public class PlayerInteract : MonoBehaviour
         {
             if (_hitInfo.collider.GetComponent<Interactable>() != null)
             {
+                //renderers = _hitInfo.collider.GetComponent<MeshRenderer>();
+
+                //materialList.Clear();
+                //materialList.AddRange(renderers.sharedMaterials);
+                //materialList.Add(outline);
+
+                //renderers.materials = materialList.ToArray();
+
                 Interactable _interactable = _hitInfo.collider.GetComponent<Interactable>();
                 _playerUI.UpdateText(_interactable.promptMessage);
                 if(Input.GetKeyDown(KeyCode.E))
                     _interactable.BassInteract();
+            }
+            else
+            {
+                //MeshRenderer renderer = _hitInfo.collider.GetComponent<MeshRenderer>();
+
+                //materialList.Clear();
+                //materialList.AddRange(renderer.sharedMaterials);
+                //materialList.Remove(outline);
+
+                //renderer.materials = materialList.ToArray();
             }
         }
     }

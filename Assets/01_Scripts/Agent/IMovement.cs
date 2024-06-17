@@ -9,7 +9,6 @@ public interface IMovement
     public void Initalize(Agent agent);
     public void SetMovement(Vector3 movement, bool isRotation = true);
     public void StopImmediately();
-    public void SetDetination(Vector3 destination);
 
     public float Verticalveocity { get; }
     public CharacterController CC { get; }
