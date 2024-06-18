@@ -14,6 +14,8 @@ public class TimelineEvent : MonoBehaviour
         for (int i = 0; i < lights.Length; i++) 
             lights[i].GetComponent<SplashLight>().enabled = false;
         isPlay = false;
+
+        StartCoroutine(EyeSplash());
     }
 
     private void Update()
@@ -26,9 +28,23 @@ public class TimelineEvent : MonoBehaviour
         }
     }
 
+    private IEnumerator EyeSplash()
+    {
+        FadeManager.Instance.FadeOut();
+        yield return null;
+        FadeManager.Instance.FadeIn();
+        yield return null;
+        FadeManager.Instance.FadeOut();
+    }
+
     public void PlayOn()
     {
         isPlay = true;
+    }
+
+    public void PlaySound()
+    {
+
     }
 
     public void LoadScene()
