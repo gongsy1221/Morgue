@@ -30,7 +30,10 @@ public class TurnOffLight : MonoBehaviour
     private void Update()
     {
         if (door1.isKey || door2.isKey)
+        {
             isClear = true;
+            SoundManager.StopFx(audioClip);
+        }
 
         currentTime += Time.deltaTime;
 

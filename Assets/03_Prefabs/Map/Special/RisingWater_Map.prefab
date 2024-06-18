@@ -143,6 +143,7 @@ MonoBehaviour:
   water: {fileID: 3004912572651191311}
   door1: {fileID: 9013149488540337857}
   door2: {fileID: 3610113904218627741}
+  audioClip: {fileID: 8300000, guid: a4231e186f611f946ba89346d418800f, type: 3}
 --- !u!1 &700703700386258811
 GameObject:
   m_ObjectHideFlags: 0
@@ -6778,7 +6779,7 @@ PrefabInstance:
     - target: {fileID: 6085434966753686058, guid: bf540caeb9debcf4e9fd4d09a611105c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.020327
+      value: 3.09
       objectReference: {fileID: 0}
     - target: {fileID: 6085434966753686058, guid: bf540caeb9debcf4e9fd4d09a611105c,
         type: 3}

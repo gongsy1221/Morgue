@@ -88,36 +88,18 @@ public class Player : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if(isCheck)
+        HandleTriggerEnter(other);
+    }
+
+
+    private void HandleTriggerEnter(Collider other)
+    {
+        if (isCheck)
         {
-            if (other.CompareTag("Backward"))
+            if (RoomManager.Instance.ProcessRoomTransition(other.tag))
             {
-                if (!RoomManager.Instance.isSpecial)
-                    RoomManager.Instance.roomNumber = 1;
-                else
-                    RoomManager.Instance.roomNumber++;
-
                 isCheck = false;
-                RoomManager.Instance.isForward = false;
-
-                if (!RoomManager.Instance.isRoom)
-                    RoomManager.Instance.PlayerCheck();
             }
-
-            if (other.CompareTag("Forward"))
-            {
-                if (!RoomManager.Instance.isSpecial)
-                    RoomManager.Instance.roomNumber++;
-                else
-                    RoomManager.Instance.roomNumber = 1;
-
-                isCheck = false;
-                RoomManager.Instance.isForward = true;
-
-                if (!RoomManager.Instance.isRoom)
-                    RoomManager.Instance.PlayerCheck();
-            }
-
             _playerUI.UpdateRoomText();
         }
 
@@ -127,12 +109,15 @@ public class Player : Agent
             RoomManager.Instance.CheckInRoom();
         }
 
-        if(other.CompareTag("Last"))
+        if (other.CompareTag("Last"))
         {
-            //SceneManager.LoadScene("03_LastScene");
-            StartCoroutine(FadeManager.Instance.FadeIn());
-            SceneManager.LoadScene(0);
-            Debug.Log("Game End");
+            EndGame();
         }
+    }
+
+    private void EndGame()
+    {
+        StartCoroutine(FadeManager.Instance.FadeIn());
+        SceneManager.LoadScene("03_LastScene");
     }
 }

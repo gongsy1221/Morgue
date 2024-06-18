@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerIdleState : PlayerGroundState
@@ -31,7 +28,7 @@ public class PlayerIdleState : PlayerGroundState
     private void HandleMovementEvent(Vector3 movement)
     {
         float inputThreshold = 0.05f;
-        if(movement.sqrMagnitude > inputThreshold)
+        if (movement.sqrMagnitude > inputThreshold)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -39,7 +36,7 @@ public class PlayerIdleState : PlayerGroundState
                 return;
             }
 
-            if(Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftControl))
             {
                 _stateMachine.ChangeState(PlayerStateEnum.Sit);
                 return;

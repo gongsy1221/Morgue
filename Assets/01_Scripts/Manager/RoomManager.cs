@@ -15,6 +15,9 @@ public class RoomManager : MonoSingleton<RoomManager>
     public GameObject currentRoom;
     private GameObject beforeRoom;
 
+    private GameObject roomNumObj;
+    public Sprite[] roomNumSprite;
+
     public int roomNumber = 0;
     private const int maxRooms = 8;
 
@@ -66,7 +69,7 @@ public class RoomManager : MonoSingleton<RoomManager>
 
         if (specialRoomPrefabList.Count == 0 && !isSpecial)
         {
-            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position, isForward ? 
+            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position, isForward ?
                 forwardMap.rotation : backwardMap.rotation);
             yield return null;
         }
@@ -81,15 +84,17 @@ public class RoomManager : MonoSingleton<RoomManager>
         if (isSpecial)
         {
             int specialIndex = rand - 1;
-            currentRoom = Instantiate(specialRoomPrefabList[specialIndex], isForward ? forwardMap.position : backwardMap.position, 
+            currentRoom = Instantiate(specialRoomPrefabList[specialIndex], isForward ? forwardMap.position : backwardMap.position,
                 isForward ? forwardMap.rotation : backwardMap.rotation);
             specialRoomPrefabList.RemoveAt(specialIndex);
         }
         else
         {
-            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position, 
+            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position,
                 isForward ? forwardMap.rotation : backwardMap.rotation);
         }
+
+        //roomNumObj = FindObjectOfType
 
         yield return null;
 
@@ -99,6 +104,31 @@ public class RoomManager : MonoSingleton<RoomManager>
             beforeRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
 
         yield return null;
+    }
+
+    public bool ProcessRoomTransition(string tag)
+    {
+        bool transitionOccurred = false;
+
+        if (tag == "Backward")
+        {
+            roomNumber = isSpecial ? roomNumber + 1 : 1;
+            isForward = false;
+            transitionOccurred = true;
+        }
+        else if (tag == "Forward")
+        {
+            roomNumber = isSpecial ? 1 : roomNumber + 1;
+            isForward = true;
+            transitionOccurred = true;
+        }
+
+        if (transitionOccurred && !isRoom)
+        {
+            PlayerCheck();
+        }
+
+        return transitionOccurred;
     }
 
     // 방에 플레이어가 들어왔는지 체크

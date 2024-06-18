@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +10,7 @@ public class TimelineEvent : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < lights.Length; i++) 
+        for (int i = 0; i < lights.Length; i++)
             lights[i].GetComponent<SplashLight>().enabled = false;
         isPlay = false;
 
@@ -20,7 +19,7 @@ public class TimelineEvent : MonoBehaviour
 
     private void Update()
     {
-        if(isPlay)
+        if (isPlay)
         {
             for (int i = 0; i < lights.Length; i++)
                 lights[i].GetComponent<SplashLight>().enabled = true;
@@ -50,12 +49,18 @@ public class TimelineEvent : MonoBehaviour
     public void LoadScene()
     {
         FadeManager.Instance.Alpah1();
-        StartCoroutine(LoadSceneRoutine());
+        StartCoroutine(LoadSceneRoutine("01_MainScene"));
     }
 
-    private IEnumerator LoadSceneRoutine()
+    public void LoadEndScene()
+    {
+        FadeManager.Instance.Alpah1();
+        StartCoroutine(LoadSceneRoutine("00_TitleScene"));
+    }
+
+    private IEnumerator LoadSceneRoutine(string sceneName)
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("01_MainScene");
+        SceneManager.LoadScene(sceneName);
     }
 }

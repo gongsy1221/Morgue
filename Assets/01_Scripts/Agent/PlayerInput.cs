@@ -1,14 +1,12 @@
 using System;
-using TMPro;
 using UnityEngine;
-using Cursor = UnityEngine.Cursor;
 
 public class PlayerInput : MonoBehaviour
 {
     public event Action<Vector3> MovementEvent;
     public event Action JumpEvent;
-    
-    public Vector3 MousePosition { get;private set; }
+
+    public Vector3 MousePosition { get; private set; }
 
     private bool _playerInputEnabled = true;
 

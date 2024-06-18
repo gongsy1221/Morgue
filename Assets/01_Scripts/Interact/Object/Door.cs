@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +6,18 @@ public class Door : Interactable
     public Item key;
     public Door pairDoor;
     public AudioClip audioClip;
+    private AudioClip doorHandleAudio;
 
     public bool isKey = false;
     public bool isOpen = false;
     public float doorOpenAngle = 90f;
     public float doorCloseAngle = 0f;
     public float smoot = 2f;
+
+    private void Awake()
+    {
+        //doorHandleAudio = Resources.Load("DoorHandle") as AudioClip;
+    }
 
     public override void Interact()
     {
@@ -26,12 +31,16 @@ public class Door : Interactable
             promptMessage = "문";
             pairDoor.promptMessage = promptMessage;
         }
-        else if(isKey)
+        else if (isKey)
         {
             isOpen = !isOpen;
             pairDoor.isOpen = isOpen;
             SoundManager.PlayOnce(audioClip);
             SoundManager.PlayOnce(pairDoor.audioClip);
+        }
+        else
+        {
+            //SoundManager.PlayEffect(doorHandleAudio);
         }
     }
 

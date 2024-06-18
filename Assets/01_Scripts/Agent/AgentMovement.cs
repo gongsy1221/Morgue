@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AgentMovement : MonoBehaviour, IMovement
@@ -14,7 +12,7 @@ public class AgentMovement : MonoBehaviour, IMovement
     private float _verticalVelocity;
     #endregion
 
-    public bool IsGround =>  _characterController.isGrounded;
+    public bool IsGround => _characterController.isGrounded;
 
     public float Verticalveocity => _verticalVelocity;
 

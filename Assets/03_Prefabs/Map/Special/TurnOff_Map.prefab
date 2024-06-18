@@ -809,7 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightObj: {fileID: 1227903714483718095}
   ghostObj: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: b8c334f9e8b485c45b5cc8f16014657d, type: 3}
+  audioClip: {fileID: 8300000, guid: 33df916a342c16046a07c05bbf780b61, type: 3}
   door1: {fileID: 8547865030275650311}
   door2: {fileID: 7169516591883906498}
 --- !u!1 &5301511487235055241
@@ -8149,7 +8149,7 @@ PrefabInstance:
     - target: {fileID: 6085434966753686058, guid: bf540caeb9debcf4e9fd4d09a611105c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.020327
+      value: 3.05
       objectReference: {fileID: 0}
     - target: {fileID: 6085434966753686058, guid: bf540caeb9debcf4e9fd4d09a611105c,
         type: 3}

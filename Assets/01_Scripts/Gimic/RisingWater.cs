@@ -9,6 +9,8 @@ public class RisingWater : MonoBehaviour
     [SerializeField] private Door door1;
     [SerializeField] private Door door2;
 
+    [SerializeField] private AudioClip audioClip;
+
     private Player _player;
 
     private float currentY = -0.75f;
@@ -21,10 +23,18 @@ public class RisingWater : MonoBehaviour
         _player = FindObjectOfType<Player>();
     }
 
+    private void Start()
+    {
+        SoundManager.PlayFx(audioClip, 1, true);
+    }
+
     private void Update()
     {
         if (door1.isKey || door2.isKey)
+        {
             isClear = true;
+            SoundManager.StopFx(audioClip);
+        }
 
         if (currentY <= maxY)
         {

@@ -13237,6 +13237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: b8c334f9e8b485c45b5cc8f16014657d, type: 3}
+  bgClip: {fileID: 8300000, guid: e933f4515a9ac1448943f79c7cf01d54, type: 3}
 --- !u!95 &8898275336170453024
 Animator:
   serializedVersion: 5

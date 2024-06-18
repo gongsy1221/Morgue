@@ -9,10 +9,17 @@ public class Cabinet : Interactable
     public float cabinetOpenPos = -0.1f;
     public float cabinetClosePos = 0.3f;
     public float smoot = 2f;
+    private AudioClip audioClip;
+
+    private void Awake()
+    {
+        //audioClip = Resources.Load("noise12") as AudioClip;
+    }
 
     public override void Interact()
     {
         open = !open;
+        //SoundManager.PlayEffect(audioClip);
     }
 
     void Update()
