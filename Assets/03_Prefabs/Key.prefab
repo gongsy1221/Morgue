@@ -121,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptMessage: "\uC5F4\uC1E0"
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
+  clip: {fileID: 8300000, guid: 3a7149eeec3818045b553af91861db79, type: 3}

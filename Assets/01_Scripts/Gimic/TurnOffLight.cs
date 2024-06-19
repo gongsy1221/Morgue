@@ -35,23 +35,23 @@ public class TurnOffLight : MonoBehaviour
             SoundManager.StopFx(audioClip);
         }
 
-        currentTime += Time.deltaTime;
-
-        if (currentTime > randTime)
-        {
-            SoundManager.StopFx(audioClip);
-            StartCoroutine(ChangeLightObj());
-            currentTime = 0f;
-        }
-
         if(!isClear)
         {
+            currentTime += Time.deltaTime;
+
+            if (currentTime > randTime)
+            {
+                SoundManager.StopFx(audioClip);
+                StartCoroutine(ChangeLightObj());
+                currentTime = 0f;
+            }
+
             if (!checkState && _player.isMove)
             {
                 _player.PlayerDie();
                 ghostObj.SetActive(true);
 
-                Invoke("RestartGame", 1f);
+                Invoke("RestartGame", 2.5f);
             }
         }
             
@@ -78,6 +78,6 @@ public class TurnOffLight : MonoBehaviour
 
     private void RestartGame()
     {
-        RoomManager.Instance.ReStartGame();
+        RoomManager.Instance.RestartGame();
     }
 }

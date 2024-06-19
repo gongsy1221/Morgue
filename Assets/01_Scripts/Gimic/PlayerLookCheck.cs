@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerLookCheck : MonoBehaviour
 {
-    [SerializeField] GameObject ghostObj;
+    [SerializeField] private GameObject ghostObj;
+    [SerializeField] private AudioClip audioClip;
 
     public Transform ghostGirl;
 
@@ -24,6 +25,8 @@ public class PlayerLookCheck : MonoBehaviour
 
         if (ghostGirl != null)
             ghostGirlY = ghostGirl.transform.position.y;
+
+        SoundManager.PlayFx(audioClip, 0.6f, true);
     }
 
     void Update()
@@ -39,7 +42,10 @@ public class PlayerLookCheck : MonoBehaviour
                 if (timer >= gazeTime)
                 {
                     _player.PlayerDie();
+                    ghostGirl.GetComponent<CapsuleCollider>().enabled = false;
                     timer = 0.0f;
+                    SoundManager.StopFx(audioClip, 1f);
+
                     StartCoroutine(MoveGhostGirlCoroutine());
                 }
             }
@@ -76,6 +82,6 @@ public class PlayerLookCheck : MonoBehaviour
         ghostObj.SetActive(true);
 
         yield return new WaitForSeconds(2.5f);
-        RoomManager.Instance.ReStartGame();
+        RoomManager.Instance.RestartGame();
     }
 }

@@ -7,15 +7,16 @@ public class RoomManager : MonoSingleton<RoomManager>
 {
     [SerializeField] private GameObject[] specialRoomPrefabArray;
     private List<GameObject> specialRoomPrefabList;
+    private List<GameObject> specialRoomPrefabSave;
     [SerializeField] private GameObject normalRoomPrefab;
     [SerializeField] private GameObject lastRoom;
 
     public Transform forwardMap;
     public Transform backwardMap;
     public GameObject currentRoom;
-    private GameObject beforeRoom;
+    private GameObject previousRoom;
 
-    private GameObject roomNumObj;
+    private SpriteRenderer roomNumObj;
     public Sprite[] roomNumSprite;
 
     public int roomNumber = 0;
@@ -29,9 +30,8 @@ public class RoomManager : MonoSingleton<RoomManager>
     {
         isRoom = false;
         isSpecial = false;
-
         specialRoomPrefabList = new List<GameObject>(specialRoomPrefabArray);
-
+        specialRoomPrefabSave = specialRoomPrefabList;
         Initialize();
     }
 
@@ -40,120 +40,136 @@ public class RoomManager : MonoSingleton<RoomManager>
         forwardMap = GameObject.FindWithTag("FMap").transform;
         backwardMap = GameObject.FindWithTag("BMap").transform;
 
-        KeySpawner.Instance.spawnPoints = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
-        KeySpawner.Instance.RandomSpawnKey();
+        var keySpawner = KeySpawner.Instance;
+        keySpawner.spawnPoints = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
+        keySpawner.RandomSpawnKey();
     }
 
-    // 플레이어가 복도를 지났는지 체크
     public void PlayerCheck()
     {
         if (roomNumber <= maxRooms)
         {
-            StartCoroutine(RandomRoom());
+            StartCoroutine(GenerateRandomRoom());
         }
         else
         {
-            GameOver();
+            EndGame();
         }
     }
 
-    private void GameOver()
+    private void EndGame()
     {
-        Instantiate(lastRoom, isForward ? forwardMap.position : backwardMap.position, isForward ?
-                forwardMap.rotation : backwardMap.rotation);
+        Instantiate(lastRoom, isForward ? forwardMap.position : backwardMap.position,
+            isForward ? forwardMap.rotation : backwardMap.rotation);
     }
 
-    private IEnumerator RandomRoom()
+    private IEnumerator GenerateRandomRoom()
     {
         isRoom = true;
 
-        if (specialRoomPrefabList.Count == 0 && !isSpecial)
+        if (specialRoomPrefabList.Count == 0)
         {
-            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position, isForward ?
-                forwardMap.rotation : backwardMap.rotation);
-            yield return null;
+            specialRoomPrefabList = specialRoomPrefabSave;
+            yield break;
         }
 
         int rand = Random.Range(0, specialRoomPrefabList.Count + 1);
         isSpecial = rand != 0;
 
-        beforeRoom = currentRoom;
+        previousRoom = currentRoom;
 
         yield return null;
 
         if (isSpecial)
         {
-            int specialIndex = rand - 1;
-            currentRoom = Instantiate(specialRoomPrefabList[specialIndex], isForward ? forwardMap.position : backwardMap.position,
-                isForward ? forwardMap.rotation : backwardMap.rotation);
-            specialRoomPrefabList.RemoveAt(specialIndex);
+            CreateSpecialRoom(rand - 1);
         }
         else
         {
-            currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position,
-                isForward ? forwardMap.rotation : backwardMap.rotation);
+            CreateNormalRoom();
         }
 
-        //roomNumObj = FindObjectOfType
-
-        yield return null;
-
-        if (isForward)
-            beforeRoom.transform.Find("FrontDoor").GetComponent<Door>().CloseDoor();
-        else
-            beforeRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
+        UpdateRoomNumberSprite();
+        CloseRoomDoor();
 
         yield return null;
     }
 
-    public bool ProcessRoomTransition(string tag)
+    private void CreateNormalRoom()
     {
-        bool transitionOccurred = false;
+        currentRoom = Instantiate(normalRoomPrefab, isForward ? forwardMap.position : backwardMap.position,
+            isForward ? forwardMap.rotation : backwardMap.rotation);
+    }
+
+    private void CreateSpecialRoom(int index)
+    {
+        currentRoom = Instantiate(specialRoomPrefabList[index], isForward ? forwardMap.position : backwardMap.position,
+            isForward ? forwardMap.rotation : backwardMap.rotation);
+        specialRoomPrefabList.RemoveAt(index);
+    }
+
+    private void UpdateRoomNumberSprite()
+    {
+        roomNumObj = currentRoom.transform.Find("paper").GetComponentInChildren<SpriteRenderer>();
+        roomNumObj.sprite = roomNumSprite[roomNumber - 1];
+    }
+
+    private void CloseRoomDoor()
+    {
+        var doorTag = isForward ? "FrontDoor" : "BackDoor";
+        var door = previousRoom.transform.Find(doorTag).GetComponent<Door>();
+        door.CloseDoor();
+    }
+
+    public bool RoomTransition(string tag)
+    {
+        SoundManager.StopAllFx();
 
         if (tag == "Backward")
         {
             roomNumber = isSpecial ? roomNumber + 1 : 1;
             isForward = false;
-            transitionOccurred = true;
         }
         else if (tag == "Forward")
         {
             roomNumber = isSpecial ? 1 : roomNumber + 1;
             isForward = true;
-            transitionOccurred = true;
+        }
+        else
+        {
+            return false;
         }
 
-        if (transitionOccurred && !isRoom)
+        if (!isRoom)
         {
             PlayerCheck();
         }
 
-        return transitionOccurred;
+        return true;
     }
 
-    // 방에 플레이어가 들어왔는지 체크
     public void CheckInRoom()
     {
         isRoom = false;
 
-        Destroy(beforeRoom);
+        Destroy(previousRoom);
         currentRoom.transform.Find("Street").gameObject.SetActive(true);
 
-        Transform mapEvent = currentRoom.transform.Find("MapEvent");
+        var mapEvent = currentRoom.transform.Find("MapEvent");
         if (mapEvent != null)
         {
             mapEvent.gameObject.SetActive(true);
         }
 
         currentRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
-        //TimerManager.Instance.StartTimer();
-        Invoke("Initialize", 0.5f);
 
+        Invoke(nameof(Initialize), 0.5f);
         GameObject.FindWithTag("Room").SetActive(false);
     }
 
-    public void ReStartGame()
+    public void RestartGame()
     {
+        SoundManager.StopAll();
         SceneManager.LoadScene("01_MainScene");
         StartCoroutine(FadeManager.Instance.FadeIn());
     }

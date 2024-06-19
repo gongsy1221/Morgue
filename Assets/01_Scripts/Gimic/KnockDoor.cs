@@ -8,7 +8,7 @@ public class KnockDoor : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.PlayFx(audioClip, 1, true);
+        SoundManager.PlayFx(audioClip, 0.5f, true);
     }
 
     private void Update()

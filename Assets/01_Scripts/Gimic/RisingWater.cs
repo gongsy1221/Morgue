@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class RisingWater : MonoBehaviour
 {
@@ -54,6 +53,6 @@ public class RisingWater : MonoBehaviour
 
     private void RestartGame()
     {
-        RoomManager.Instance.ReStartGame();
+        RoomManager.Instance.RestartGame();
     }
 }

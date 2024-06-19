@@ -1,21 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NormalDoor : Interactable
 {
+    [SerializeField] private AudioClip closeAudioClip;
+    [SerializeField] private AudioClip openAudioClip;
+
     public bool isOpen = false;
-    public float doorOpenAngle = 90f;
+    public float doorOpenAngle = -90f;
     public float doorCloseAngle = 0f;
-    public float smoot = 2f;
+    public float smoot = 2.5f;
+
+    private void Awake()
+    {
+        //audioClip = Resources.Load("noise12") as AudioClip;
+    }
 
     public override void Interact()
     {
         isOpen = !isOpen;
+        //SoundManager.PlayEffect(audioClip);
+        if (isOpen)
+            SoundManager.PlayOnce(openAudioClip);
+        else
+            SoundManager.PlayOnce(closeAudioClip);
     }
 
-    private void Update()
+    void Update()
     {
         if (isOpen)
         {
@@ -31,6 +44,5 @@ public class NormalDoor : Interactable
 
     public override void Solved()
     {
-        
     }
 }

@@ -7,6 +7,6 @@ public class SoundPlayer : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.PlayMusic(bgClip, 0.1f);
+        SoundManager.PlayMusic(bgClip, 0.1f, true);
     }
 }

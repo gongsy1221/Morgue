@@ -9,7 +9,6 @@ public class Cabinet : Interactable
     public float cabinetOpenPos = -0.1f;
     public float cabinetClosePos = 0.3f;
     public float smoot = 2f;
-    private AudioClip audioClip;
 
     private void Awake()
     {

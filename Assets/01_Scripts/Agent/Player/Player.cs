@@ -96,7 +96,7 @@ public class Player : Agent
     {
         if (isCheck)
         {
-            if (RoomManager.Instance.ProcessRoomTransition(other.tag))
+            if (RoomManager.Instance.RoomTransition(other.tag))
             {
                 isCheck = false;
             }
@@ -117,6 +117,7 @@ public class Player : Agent
 
     private void EndGame()
     {
+        SoundManager.StopAll();
         StartCoroutine(FadeManager.Instance.FadeIn());
         SceneManager.LoadScene("03_LastScene");
     }

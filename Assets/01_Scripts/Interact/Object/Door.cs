@@ -6,6 +6,7 @@ public class Door : Interactable
     public Item key;
     public Door pairDoor;
     public AudioClip audioClip;
+    public AudioClip clostAudioClip;
     private AudioClip doorHandleAudio;
 
     public bool isKey = false;
@@ -82,6 +83,7 @@ public class Door : Interactable
         pairDoor.isOpen = false;
         isKey = false;
         pairDoor.isKey = false;
+        SoundManager.PlayOnce(clostAudioClip);
     }
 
     public override void Solved()
