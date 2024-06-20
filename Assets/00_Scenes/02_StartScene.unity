@@ -1620,7 +1620,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b8c334f9e8b485c45b5cc8f16014657d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2736,6 +2736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -4189,6 +4191,7 @@ MonoBehaviour:
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 2353359141607191800}
   audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
+  clostAudioClip: {fileID: 0}
   isKey: 0
   isOpen: 0
   doorOpenAngle: -10
@@ -4498,6 +4501,7 @@ MonoBehaviour:
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 2154860760111170944}
   audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
+  clostAudioClip: {fileID: 0}
   isKey: 0
   isOpen: 0
   doorOpenAngle: 10
@@ -5594,6 +5598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -5743,6 +5749,7 @@ MonoBehaviour:
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 4686491669982014912}
   audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
+  clostAudioClip: {fileID: 0}
   isKey: 0
   isOpen: 0
   doorOpenAngle: -280
@@ -6430,6 +6437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -7037,6 +7046,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -7446,6 +7457,7 @@ MonoBehaviour:
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 3746662288986389259}
   audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
+  clostAudioClip: {fileID: 0}
   isKey: 0
   isOpen: 0
   doorOpenAngle: 100
@@ -8130,6 +8142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -8910,6 +8924,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -9090,6 +9106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -9274,6 +9292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -10387,6 +10407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -10521,6 +10543,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -13123,6 +13147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -13759,6 +13785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0

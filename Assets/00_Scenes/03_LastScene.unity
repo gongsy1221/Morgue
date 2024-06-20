@@ -1256,12 +1256,27 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 00966021b62071d4ea73ca1cc10a089a, type: 2}
     - {fileID: 11400000, guid: 128e2f9aa7748014e9b679ba259aba4e, type: 2}
+    - {fileID: 11400000, guid: 2c13951ad041d8d41aae6a7c0873b16d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 422174717}
           m_TargetAssemblyTypeName: TimelineEvent, Assembly-CSharp
           m_MethodName: PlayOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 422174717}
+          m_TargetAssemblyTypeName: TimelineEvent, Assembly-CSharp
+          m_MethodName: LoadEndScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1632,7 +1647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1534612696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3047,6 +3062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -5842,6 +5859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -5991,6 +6010,7 @@ MonoBehaviour:
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 4686491669982014912}
   audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
+  clostAudioClip: {fileID: 0}
   isKey: 0
   isOpen: 0
   doorOpenAngle: -280
@@ -6626,6 +6646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -7233,6 +7255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -7638,6 +7662,7 @@ MonoBehaviour:
   key: {fileID: 11400000, guid: 4257b1e48cbc74644bf6d97d730da71d, type: 2}
   pairDoor: {fileID: 3746662288986389259}
   audioClip: {fileID: 8300000, guid: 961bdbf061ba34f469e60c0b12b48af4, type: 3}
+  clostAudioClip: {fileID: 0}
   isKey: 0
   isOpen: 0
   doorOpenAngle: 100
@@ -8314,6 +8339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -9093,6 +9120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -9273,6 +9302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -9457,6 +9488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -10570,6 +10603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -10704,6 +10739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -13291,6 +13328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0
@@ -13573,12 +13612,27 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 00966021b62071d4ea73ca1cc10a089a, type: 2}
     - {fileID: 11400000, guid: 128e2f9aa7748014e9b679ba259aba4e, type: 2}
+    - {fileID: 11400000, guid: 2c13951ad041d8d41aae6a7c0873b16d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 422174717}
           m_TargetAssemblyTypeName: TimelineEvent, Assembly-CSharp
           m_MethodName: PlayOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 422174717}
+          m_TargetAssemblyTypeName: TimelineEvent, Assembly-CSharp
+          m_MethodName: LoadEndScene
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13957,6 +14011,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: "\uC2DC\uCCB4\uBCF4\uAD00\uD568"
+  closeAudioClip: {fileID: 0}
+  openAudioClip: {fileID: 0}
   isOpen: 0
   doorOpenAngle: -100
   doorCloseAngle: 0

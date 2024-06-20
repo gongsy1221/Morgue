@@ -11,27 +11,31 @@ public class RoomManager : MonoSingleton<RoomManager>
     [SerializeField] private GameObject normalRoomPrefab;
     [SerializeField] private GameObject lastRoom;
 
-    public Transform forwardMap;
-    public Transform backwardMap;
+    private Transform forwardMap;
+    private Transform backwardMap;
     public GameObject currentRoom;
     private GameObject previousRoom;
 
     private SpriteRenderer roomNumObj;
-    public Sprite[] roomNumSprite;
+    [SerializeField] private Sprite[] roomNumSprite;
 
     public int roomNumber = 0;
     private const int maxRooms = 8;
 
-    public bool isSpecial = false;
     public bool isRoom = false;
-    public bool isForward = true;
+    private bool isSpecial = false;
+    private bool isForward = true;
+
+    private KeySpawner keySpawner;
+    private Transform[] spawnPoints;
 
     private void Start()
     {
         isRoom = false;
         isSpecial = false;
         specialRoomPrefabList = new List<GameObject>(specialRoomPrefabArray);
-        specialRoomPrefabSave = specialRoomPrefabList;
+        specialRoomPrefabSave = new List<GameObject>(specialRoomPrefabArray);
+
         Initialize();
     }
 
@@ -40,8 +44,9 @@ public class RoomManager : MonoSingleton<RoomManager>
         forwardMap = GameObject.FindWithTag("FMap").transform;
         backwardMap = GameObject.FindWithTag("BMap").transform;
 
-        var keySpawner = KeySpawner.Instance;
-        keySpawner.spawnPoints = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
+        keySpawner = KeySpawner.Instance;
+        spawnPoints = GameObject.FindWithTag("Point").GetComponentsInChildren<Transform>();
+        keySpawner.spawnPoints = spawnPoints;
         keySpawner.RandomSpawnKey();
     }
 
@@ -69,16 +74,13 @@ public class RoomManager : MonoSingleton<RoomManager>
 
         if (specialRoomPrefabList.Count == 0)
         {
-            specialRoomPrefabList = specialRoomPrefabSave;
-            yield break;
+            specialRoomPrefabList = new List<GameObject>(specialRoomPrefabSave);
         }
 
         int rand = Random.Range(0, specialRoomPrefabList.Count + 1);
         isSpecial = rand != 0;
 
         previousRoom = currentRoom;
-
-        yield return null;
 
         if (isSpecial)
         {
@@ -116,9 +118,15 @@ public class RoomManager : MonoSingleton<RoomManager>
 
     private void CloseRoomDoor()
     {
-        var doorTag = isForward ? "FrontDoor" : "BackDoor";
-        var door = previousRoom.transform.Find(doorTag).GetComponent<Door>();
-        door.CloseDoor();
+        if (previousRoom != null)
+        {
+            var doorTag = isForward ? "FrontDoor" : "BackDoor";
+            var door = previousRoom.transform.Find(doorTag)?.GetComponent<Door>();
+            if (door != null)
+            {
+                door.CloseDoor();
+            }
+        }
     }
 
     public bool RoomTransition(string tag)

@@ -763,8 +763,6 @@ MonoBehaviour:
     type: 3}
   lastRoom: {fileID: 7379633816445614114, guid: eea73655b607f6d4485a28b9ee11340f,
     type: 3}
-  forwardMap: {fileID: 1604113613633047922}
-  backwardMap: {fileID: 6494825203945164637}
   currentRoom: {fileID: 36738863336257782}
   roomNumSprite:
   - {fileID: 21300000, guid: 6c23207a11b6fb64d8dd49fbb69f5265, type: 3}
@@ -776,9 +774,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 511b07b7d7b80954e95f07cd7a13202f, type: 3}
   - {fileID: 21300000, guid: 4a8ca1ffb1296ae48890c8c97e7ba5cd, type: 3}
   roomNumber: 0
-  isSpecial: 0
   isRoom: 0
-  isForward: 1
 --- !u!4 &491591517
 Transform:
   m_ObjectHideFlags: 0
