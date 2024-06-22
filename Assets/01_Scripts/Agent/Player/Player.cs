@@ -39,8 +39,6 @@ public class Player : Agent
     {
         base.Awake();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         StateMachine = new PlayerStateMachine();
         soundPlayer = GetComponent<SoundPlayer>();
 
@@ -112,6 +110,8 @@ public class Player : Agent
         if (other.CompareTag("Last"))
         {
             EndGame();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

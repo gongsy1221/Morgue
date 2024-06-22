@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FadeManager : MonoSingleton<FadeManager>
 {
-    public float fadeSpeed = 0.8f;
+    public float fadeSpeed = 0.5f;
     public bool fadeInOnStart = true;
     public bool fadeOutOnExit = true;
 

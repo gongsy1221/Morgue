@@ -139,7 +139,9 @@ namespace SlimUI.ModernMenu{
 
 		public void LoadScene(string scene){
 			if(scene != ""){
-				StartCoroutine(LoadAsynchronously(scene));
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                StartCoroutine(LoadAsynchronously(scene));
 			}
 		}
 
