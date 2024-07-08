@@ -120,8 +120,8 @@ public class RoomManager : MonoSingleton<RoomManager>
     {
         if (previousRoom != null)
         {
-            var doorTag = isForward ? "FrontDoor" : "BackDoor";
-            var door = previousRoom.transform.Find(doorTag)?.GetComponent<Door>();
+            string doorTag = isForward ? "FrontDoor" : "BackDoor";
+            Door door = previousRoom.transform.Find(doorTag)?.GetComponent<Door>();
             if (door != null)
             {
                 door.CloseDoor();
@@ -152,7 +152,6 @@ public class RoomManager : MonoSingleton<RoomManager>
         {
             PlayerCheck();
         }
-
         return true;
     }
 
