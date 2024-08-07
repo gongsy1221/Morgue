@@ -53,13 +53,9 @@ public class RoomManager : MonoSingleton<RoomManager>
     public void PlayerCheck()
     {
         if (roomNumber <= maxRooms)
-        {
             StartCoroutine(GenerateRandomRoom());
-        }
         else
-        {
             EndGame();
-        }
     }
 
     private void EndGame()
@@ -73,9 +69,7 @@ public class RoomManager : MonoSingleton<RoomManager>
         isRoom = true;
 
         if (specialRoomPrefabList.Count == 0)
-        {
             specialRoomPrefabList = new List<GameObject>(specialRoomPrefabSave);
-        }
 
         int rand = Random.Range(0, specialRoomPrefabList.Count + 1);
         isSpecial = rand != 0;
@@ -83,13 +77,9 @@ public class RoomManager : MonoSingleton<RoomManager>
         previousRoom = currentRoom;
 
         if (isSpecial)
-        {
             CreateSpecialRoom(rand - 1);
-        }
         else
-        {
             CreateNormalRoom();
-        }
 
         UpdateRoomNumberSprite();
         CloseRoomDoor();
@@ -123,9 +113,7 @@ public class RoomManager : MonoSingleton<RoomManager>
             string doorTag = isForward ? "FrontDoor" : "BackDoor";
             Door door = previousRoom.transform.Find(doorTag)?.GetComponent<Door>();
             if (door != null)
-            {
                 door.CloseDoor();
-            }
         }
     }
 
@@ -144,14 +132,11 @@ public class RoomManager : MonoSingleton<RoomManager>
             isForward = true;
         }
         else
-        {
             return false;
-        }
 
         if (!isRoom)
-        {
             PlayerCheck();
-        }
+
         return true;
     }
 
@@ -164,9 +149,7 @@ public class RoomManager : MonoSingleton<RoomManager>
 
         var mapEvent = currentRoom.transform.Find("MapEvent");
         if (mapEvent != null)
-        {
             mapEvent.gameObject.SetActive(true);
-        }
 
         currentRoom.transform.Find("BackDoor").GetComponent<Door>().CloseDoor();
 
